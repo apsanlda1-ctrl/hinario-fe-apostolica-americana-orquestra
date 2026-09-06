@@ -1,0 +1,57 @@
+{
+  "hinario": {
+    "nome": "Hinário Fé Apostólica Americana",
+    "categoria": "Orquestra",
+    "versao": "1.0"
+  },
+
+  "hinos": [
+    {
+      "numero": "001",
+      "titulo": "Hino de Exemplo",
+      "categoria": "Louvor",
+      "letra": "",
+      "partitura": "",
+      "audio": "",
+      "instrumentos": {
+        "soprano": "",
+        "alto": "",
+        "tenor": "",
+        "baixo": "",
+        "orquestra": ""
+      }
+    },
+
+    {
+      "numero": "002",
+      "titulo": "Segundo Hino",
+      "categoria": "Louvor",
+      "letra": "",
+      "partitura": "",
+      "audio": "",
+      "instrumentos": {
+        "soprano": "",
+        "alto": "",
+        "tenor": "",
+        "baixo": "",
+        "orquestra": ""
+      }
+    },
+
+    {
+      "numero": "003",
+      "titulo": "Terceiro Hino",
+      "categoria": "Louvor",
+      "letra": "",
+      "partitura": "",
+      "audio": "",
+      "instrumentos": {
+        "soprano": "",
+        "alto": "",
+        "tenor": "",
+        "baixo": "",
+        "orquestra": ""
+      }
+    }
+  ]
+}
