@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hinário Fé Apostólica Americana — Orquestra</title>
+
+  <meta
+    name="description"
+    content="Hinário Fé Apostólica Americana para Orquestra — catálogo digital de hinos, partituras e materiais musicais."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #17202a;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      background:
+        linear-gradient(135deg, #071d35, #123f68);
+      color: white;
+      padding: 22px 20px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      right: -100px;
+      top: -130px;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      left: -80px;
+      bottom: -100px;
+    }
+
+    .header-content {
+      max-width: 1150px;
+      margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: white;
+      color: #123f68;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 29px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .brand h1 {
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .brand p {
+      margin-top: 5px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 1150px;
+      margin: 35px auto 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h2 {
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.08;
+      max-width: 750px;
+    }
+
+    .hero p {
+      margin-top: 15px;
+      max-width: 650px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.82);
+    }
+
+    /* SEARCH */
+    .search-area {
+      max-width: 850px;
+      margin: 25px auto 0;
+      position: relative;
+      z-index: 5;
+    }
+
+    .search-box {
+      background: white;
+      padding: 7px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    .search-box span {
+      font-size: 21px;
+      padding: 0 12px;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      padding: 15px 8px;
+      font-size: 16px;
+      color: #17202a;
+    }
+
+    /* MAIN */
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 35px 20px 60px;
+    }
+
+    .section-title {
+      margin-bottom: 20px;
+    }
+
+    .section-title h3 {
+      font-size: 24px;
+    }
+
+    .section-title p {
+      margin-top: 5px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 35px;
+    }
+
+    .stat {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .stat-icon {
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      color: #123f68;
+    }
+
+    .stat span {
+      display: block;
+      color: #6b7280;
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* INSTRUMENTS */
+    .instruments {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .instrument {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 15px;
+      padding: 18px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .instrument:hover,
+    .instrument.active {
+      transform: translateY(-3px);
+      border-color: #123f68;
+      box-shadow: 0 8px 20px rgba(18,63,104,0.12);
+    }
+
+    .instrument .icon {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .instrument strong {
+      font-size: 13px;
+    }
+
+    /* HYMNS */
+    .hymns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .hymn {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid #e5e7eb;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .hymn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+    }
+
+    .hymn-number {
+      display: inline-flex;
+      background: #eaf1f7;
+      color: #123f68;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .hymn h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .hymn p {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .hymn-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid #edf0f2;
+    }
+
+    .available {
+      font-size: 11px;
+      color: #4b5563;
+    }
+
+    .open-btn {
+      border: none;
+      background: #123f68;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    /* EMPTY */
+    .empty {
+      display: none;
+      background: white;
+      padding: 35px;
+      text-align: center;
+      border-radius: 15px;
+      color: #6b7280;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #071d35;
+      color: white;
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .instruments {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hymns {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 18px 15px 25px;
+      }
+
+      .brand h1 {
+        font-size: 17px;
+      }
+
+      .brand p {
+        font-size: 11px;
+      }
+
+      .logo {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+      }
+
+      .hero {
+        margin-top: 25px;
+      }
+
+      .hero h2 {
+        font-size: 31px;
+      }
+
+      main {
+        padding: 25px 15px 45px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .stat {
+        padding: 15px;
+      }
+
+      .stat strong {
+        font-size: 21px;
+      }
+
+      .instruments {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hymns {
+        grid-template-columns: 1fr;
+      }
+
+      .search-box input {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="header-content">
+
+    <div class="brand">
+
+      <div class="logo">🎼</div>
+
+      <div>
+        <h1>Fé Apostólica Americana</h1>
+        <p>Hinário Digital para Orquestra</p>
+      </div>
+
+    </div>
+
+    <div class="hero">
+
+      <h2>
+        Hinário Fé Apostólica Americana
+      </h2>
+
+      <p>
+        Uma biblioteca musical digital para facilitar o acesso aos
+        hinos, partituras, partes instrumentais e materiais de apoio
+        da nossa música apostólica.
+      </p>
+
+    </div>
+
+    <div class="search-area">
+
+      <div class="search-box">
+
+        <span>🔎</span>
+
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Pesquisar por número ou nome do hino..."
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <!-- ESTATÍSTICAS -->
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="stat-icon">🎵</div>
+      <strong id="hymnCount">0</strong>
+      <span>Hinos cadastrados</span>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">🎻</div>
+      <strong>5</strong>
+      <span>Grupos instrumentais</span>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">📖</div>
+      <strong>PDF</strong>
+      <span>Partituras digitais</span>
+    </div>
+
+    <div class="stat">
+      <div class="stat-icon">🎧</div>
+      <strong>Áudio</strong>
+      <span>Materiais de ensaio</span>
+    </div>
+
+  </div>
+
+
+  <!-- INSTRUMENTOS -->
+
+  <div class="section-title">
+
+    <h3>Escolha o seu instrumento</h3>
+
+    <p>
+      Consulte rapidamente as partes disponíveis para cada grupo.
+    </p>
+
+  </div>
+
+
+  <div class="instruments">
+
+    <div class="instrument active" data-instrument="todos">
+      <div class="icon">🎼</div>
+      <strong>Todos</strong>
+    </div>
+
+    <div class="instrument" data-instrument="soprano">
+      <div class="icon">🎤</div>
+      <strong>Soprano</strong>
+    </div>
+
+    <div class="instrument" data-instrument="alto">
+      <div class="icon">🎶</div>
+      <strong>Alto</strong>
+    </div>
+
+    <div class="instrument" data-instrument="tenor">
+      <div class="icon">🎺</div>
+      <strong>Tenor</strong>
+    </div>
+
+    <div class="instrument" data-instrument="baixo">
+      <div class="icon">🎻</div>
+      <strong>Baixo</strong>
+    </div>
+
+  </div>
+
+
+  <!-- HINOS -->
+
+  <div class="section-title">
+
+    <h3>Hinos</h3>
+
+    <p>
+      Selecione um hino para consultar as suas informações e partituras.
+    </p>
+
+  </div>
+
+
+  <div class="hymns" id="hymnList"></div>
+
+  <div class="empty" id="emptyMessage">
+    Nenhum hino encontrado.
+  </div>
+
+</main>
+
+
+<footer>
+
+  <p>
+    © 2026 Hinário Fé Apostólica Americana — Projeto para Orquestra
+  </p>
+
+  <p style="margin-top:8px;">
+    Desenvolvido para apoiar músicos, coristas e dirigentes musicais.
+  </p>
+
+</footer>
+
+
+<script>
+
+  /*
+   * BASE DE DADOS INICIAL
+   *
+   * Quando começarmos a inserir os hinos reais,
+   * esta lista será substituída/expandida.
+   */
+
+  const hinos = [
+
+    {
+      numero: "001",
+      titulo: "Hino de Exemplo",
+      descricao: "Espaço reservado para o primeiro hino.",
+      instrumentos: ["soprano", "alto", "tenor", "baixo"]
+    },
+
+    {
+      numero: "002",
+      titulo: "Segundo Hino",
+      descricao: "Espaço reservado para o segundo hino.",
+      instrumentos: ["soprano", "alto", "tenor", "baixo"]
+    },
+
+    {
+      numero: "003",
+      titulo: "Terceiro Hino",
+      descricao: "Espaço reservado para o terceiro hino.",
+      instrumentos: ["soprano", "alto", "tenor", "baixo"]
+    }
+
+  ];
+
+
+  const hymnList = document.getElementById("hymnList");
+  const searchInput = document.getElementById("searchInput");
+  const emptyMessage = document.getElementById("emptyMessage");
+  const hymnCount = document.getElementById("hymnCount");
+
+  let instrumentoSelecionado = "todos";
+
+
+  /*
+   * MOSTRAR HINOS
+   */
+
+  function mostrarHinos() {
+
+    const pesquisa =
+      searchInput.value
+        .toLowerCase()
+        .trim();
+
+    const filtrados = hinos.filter(hino => {
+
+      const correspondePesquisa =
+        hino.numero.toLowerCase().includes(pesquisa) ||
+        hino.titulo.toLowerCase().includes(pesquisa);
+
+      const correspondeInstrumento =
+        instrumentoSelecionado === "todos" ||
+        hino.instrumentos.includes(instrumentoSelecionado);
+
+      return correspondePesquisa && correspondeInstrumento;
+
+    });
+
+
+    hymnList.innerHTML = "";
+
+
+    if (filtrados.length === 0) {
+
+      emptyMessage.style.display = "block";
+
+      return;
+
+    }
+
+
+    emptyMessage.style.display = "none";
+
+
+    filtrados.forEach(hino => {
+
+      const card = document.createElement("div");
+
+      card.className = "hymn";
+
+
+      card.innerHTML = `
+
+        <div class="hymn-number">
+          HINO ${hino.numero}
+        </div>
+
+        <h4>
+          ${hino.titulo}
+        </h4>
+
+        <p>
+          ${hino.descricao}
+        </p>
+
+        <div class="hymn-footer">
+
+          <span class="available">
+            ${hino.instrumentos.length} partes disponíveis
+          </span>
+
+          <button
+            class="open-btn"
+            onclick="abrirHino('${hino.numero}')"
+          >
+            Abrir
+          </button>
+
+        </div>
+
+      `;
+
+
+      hymnList.appendChild(card);
+
+    });
+
+  }
+
+
+  /*
+   * ABRIR HINO
+   */
+
+  function abrirHino(numero) {
+
+    const hino = hinos.find(
+      item => item.numero === numero
+    );
+
+    if (!hino) return;
+
+
+    alert(
+      `Hino ${hino.numero}\n\n` +
+      `${hino.titulo}\n\n` +
+      `Nesta área vamos colocar posteriormente:\n` +
+      `• Partitura\n` +
+      `• Partes instrumentais\n` +
+      `• Áudio\n` +
+      `• Letra\n` +
+      `• Informações do hino`
+    );
+
+  }
+
+
+  /*
+   * PESQUISA
+   */
+
+  searchInput.addEventListener(
+    "input",
+    mostrarHinos
+  );
+
+
+  /*
+   * FILTRO DE INSTRUMENTOS
+   */
+
+  document
+    .querySelectorAll(".instrument")
+    .forEach(botao => {
+
+      botao.addEventListener("click", () => {
+
+        document
+          .querySelectorAll(".instrument")
+          .forEach(item =>
+            item.classList.remove("active")
+          );
+
+
+        botao.classList.add("active");
+
+
+        instrumentoSelecionado =
+          botao.dataset.instrument;
+
+
+        mostrarHinos();
+
+      });
+
+    });
+
+
+  /*
+   * CONTADOR
+   */
+
+  hymnCount.textContent = hinos.length;
+
+
+  /*
+   * INICIALIZAR
+   */
+
+  mostrarHinos();
+
+</script>
+
+</body>
+</html>
